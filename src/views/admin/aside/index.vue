@@ -5,15 +5,15 @@
 </template>
 
 <script>
-    import NavMenu from './navMenu';
+    import NavMenu from './nav-menu';
 
     export default {
-        name: "adminAside",
+        name: "admin-aside",
         data() {
             return {};
         },
         components: {NavMenu}
-    }
+    };
 </script>
 
 <style scoped>

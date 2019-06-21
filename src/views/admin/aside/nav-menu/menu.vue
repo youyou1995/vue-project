@@ -12,7 +12,7 @@
 
 <script>
     import menuData from '../../../../assets/js/data/menu';
-    import MenuItem from './menuItem';
+    import MenuItem from './menu-item';
 
     export default {
         name: "menu",
