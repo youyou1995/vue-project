@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import './plugins/axios'
-import App from './App.vue'
-import router from './router/index'
-import './plugins/element.js'
-import store from './store/store'
+import Vue from 'vue';
+import './plugins/axios';
+import App from './App.vue';
+import router from './router/index';
+import './plugins/element.js';
+import store from './store/index';
 
 Vue.config.productionTip = false;
 

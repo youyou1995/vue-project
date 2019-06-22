@@ -1,6 +1,7 @@
 <template>
     <el-menu default-active="1-4-1"
              :collapse="isCollapse"
+             @select="handleSelect"
     >
         <menu-item :data="menu"
                    :key="menu.name"
@@ -13,6 +14,8 @@
 <script>
     import menuData from '../../../../assets/js/data/menu';
     import MenuItem from './menu-item';
+    import Vue from 'vue';
+    import {mapGetters, mapActions} from 'vuex';
 
     export default {
         name: "menu",
@@ -20,10 +23,59 @@
             return {
                 menuArr: menuData,
                 isCollapse: false
-            }
+            };
         },
-        components: {MenuItem}
-    }
+        components: {MenuItem},
+        computed: {
+            ...mapGetters('tab', [
+                'current',
+                'tabs'
+            ])
+        },
+        methods: {
+            registerComponent() {
+                menuData && menuData.length > 0 && menuData.forEach(menu => {
+                    if (!menu.children || menu.children.length === 0) {
+                        Vue.component(menu.name, () => import(`../../../${menu.path}${menu.component}.vue`));
+                    }
+                });
+            },
+            handleSelect(name) {
+                console.log('menu', name, this.current, this.tabs);
+                let isOpen = false;
+                this.tabs.forEach(tab => {
+                    // 判断是tab中是否存在
+                    if (tab.name === name) {
+                        isOpen = true;
+                        this.updateCurrent(tab);
+                    }
+                });
+                if (!isOpen) {
+                    this.dealMenu(menuData, name);
+                }
+            },
+            // 进行store中tab的添加
+            dealMenu(menuDate, name) {
+                for (let menu of menuData) {
+                    if (!menu.children && menu.children.length > 0) {
+                        if (menu.name === name) {
+                            this.addTabs(menu);
+                            break;
+                        }
+                    } else {
+                        this.dealMenu(menu.children, name);
+                    }
+                }
+            },
+            ...mapActions('tab', [
+                'addTabs',
+                'updateCurrent'
+            ])
+        },
+        mounted() {
+            this.registerComponent();
+        }
+    };
 </script>
 
 <style scoped>
