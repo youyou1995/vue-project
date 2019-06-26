@@ -1,7 +1,13 @@
 <template>
     <div class="tab" ref="tab">
+        <div class="tab-prev" @click="handleScroll('left')">
+            <i class="el-icon-arrow-left"></i>
+        </div>
+        <div class="tab-next" @click="handleScroll('right')">
+            <i class="el-icon-arrow-right"></i>
+        </div>
         <div ref="wrapper" class="tab-wrapper" :style="{transform: `translateX(${bodyLeft})px`}">
-            <transition-grop name="fade">
+            <!--<transition-grop name="fade">-->
                 <template v-if="tabData && tabData.length > 0"
                 >
                     <el-tag :ref="`tab_${tab.name}`" :closable="tab.closable"
@@ -13,7 +19,7 @@
                         {{tab.title}}
                     </el-tag>
                 </template>
-            </transition-grop>
+            <!--</transition-grop>-->
         </div>
     </div>
 </template>
@@ -27,7 +33,8 @@
         data() {
             return {
                 tabData: tabData,
-                bodyLeft: 0
+                bodyLeft: 0,
+                littleScroll: 100
             };
         },
         computed: {
@@ -68,6 +75,24 @@
                     this.bodyLeft = -(tabElement.offsetLeft - (tabWidth - tabElement.offsetWidth));
                 }
             },
+            handleScroll(type) {
+                let offsetLeft = this.$refs[`tab_${this.tab.name}`].offsetLeft;
+                if (type ==='left') {
+                    if (this.bodyLeft >= -this.littleScroll) {
+                        this.bodyLeft = 0;
+                    } else if (this.bodyLeft < -this.littleScroll) {
+                        this.bodyLeft += this.littleScroll;
+                    }
+                } else if (type === 'right') {
+                    let bodyWidth = this.$refs['wrapper'].offsetWidth,
+                        tabWidth = this.$refs['tab'].offsetWidth;
+                    if (this.bodyLeft <= bodyWidth - tabWidth - this.littleScroll) {
+                        // this.bodyLeft = this.bodyLeft;
+                    } else {
+                        this.bodyLeft += this.littleScroll;
+                    }
+                }
+            },
             ...mapActions('tab', [
                 'updateCurrent'
             ])
@@ -84,7 +109,7 @@
 
         .tab-wrapper {
             position: absolute;
-            left: 0;
+            left: 20px;
             top: 0;
             white-space: nowrap;
             height: 32px;
@@ -101,6 +126,22 @@
                     padding-right: 5px;
                 }
             }
+        }
+        .tab-prev,
+        .tab-next {
+            position: absolute;
+            top: 4px;
+            text-align: center;
+            line-height: 32px;
+            background-color: #fff;
+            width: 20px;
+            cursor: pointer;
+        }
+        .tab-prev {
+            left: 0;
+        }
+        .tab-next {
+            right: 0;
         }
     }
 </style>
