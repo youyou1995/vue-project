@@ -39,7 +39,7 @@ const actions = {
 };
 
 export default {
-    namespaced: true, // 使用命名空间后再使用map时需要指出是哪一个store的模块的变量或者方法
+    // namespaced: true, // 使用命名空间后再使用map时需要指出是哪一个store的模块的变量或者方法
     state,
     getters,
     mutations,

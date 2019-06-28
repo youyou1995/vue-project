@@ -8,17 +8,17 @@
         </div>
         <div ref="wrapper" class="tab-wrapper" :style="{transform: `translateX(${bodyLeft})px`}">
             <!--<transition-grop name="fade">-->
-                <template v-if="tabData && tabData.length > 0"
+            <template v-if="tabData && tabData.length > 0"
+            >
+                <el-tag :ref="`tab_${tab.name}`" :closable="tab.closable ==='1'"
+                        v-for="tab in tabData"
+                        :key="tab.name"
+                        @click="handleSelect(tab)"
                 >
-                    <el-tag :ref="`tab_${tab.name}`" :closable="tab.closable"
-                            v-for="tab in tabData"
-                            :key="tab.name"
-                            @click="handleSelect(tab)"
-                    >
-                        <i :class="['iconfont', tab.icon]"></i>
-                        {{tab.title}}
-                    </el-tag>
-                </template>
+                    <i :class="['iconfont', tab.icon]"></i>
+                    {{tab.title}}
+                </el-tag>
+            </template>
             <!--</transition-grop>-->
         </div>
     </div>
@@ -77,7 +77,7 @@
             },
             handleScroll(type) {
                 let offsetLeft = this.$refs[`tab_${this.tab.name}`].offsetLeft;
-                if (type ==='left') {
+                if (type === 'left') {
                     if (this.bodyLeft >= -this.littleScroll) {
                         this.bodyLeft = 0;
                     } else if (this.bodyLeft < -this.littleScroll) {

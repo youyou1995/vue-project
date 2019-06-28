@@ -1,6 +1,7 @@
 <template>
     <el-menu default-active="1-4-1"
              :collapse="isCollapse"
+             :default-active="defaultActive"
              @select="handleSelect"
     >
         <menu-item :data="menu"
@@ -22,12 +23,13 @@
         data() {
             return {
                 menuArr: menuData,
-                isCollapse: false
+                isCollapse: false,
+                defaultActive: ''
             };
         },
         components: {MenuItem},
         computed: {
-            ...mapGetters('tab', [
+            ...mapGetters([
                 'current',
                 'tabs'
             ])
@@ -36,7 +38,7 @@
             registerComponent() {
                 menuData && menuData.length > 0 && menuData.forEach(menu => {
                     if (!menu.children || menu.children.length === 0) {
-                        Vue.component(menu.name, () => import(`../../../${menu.path}${menu.component}.vue`));
+                        Vue.component(`y-${menu.name}`, () => import(`../../../${menu.path}${menu.component}.vue`));
                     }
                 });
             },
@@ -57,8 +59,11 @@
             // 进行store中tab的添加
             dealMenu(menuDate, name) {
                 for (let menu of menuData) {
-                    if (!menu.children && menu.children.length > 0) {
-                        if (menu.name === name) {
+                    if (!menu.children || menu.children.length <= 0) {
+                        if (!name) {
+                            this.defaultActive = menu.name;
+                            this.addTabs(menu);
+                        } else if (name && menu.name === name) {
                             this.addTabs(menu);
                             break;
                         }
@@ -67,13 +72,20 @@
                     }
                 }
             },
-            ...mapActions('tab', [
-                'addTabs',
-                'updateCurrent'
-            ])
+            ...mapActions([
+                    'addTabs',
+                    'updateCurrent',
+                    'addMenus'
+                ]
+            )
         },
         mounted() {
             this.registerComponent();
+            this.addMenus(this.menuArr);
+            // 默认打开第一个
+            if (!this.current) {
+                this.dealMenu(this.menuArr[0]);
+            }
         }
     };
 </script>
