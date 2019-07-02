@@ -7,7 +7,6 @@
             <i class="el-icon-arrow-right"></i>
         </div>
         <div ref="wrapper" class="tab-wrapper" :style="{transform: `translateX(${bodyLeft})px`}">
-            <!--<transition-grop name="fade">-->
             <template v-if="tabData && tabData.length > 0"
             >
                 <el-tag :ref="`tab_${tab.name}`" :closable="tab.closable ==='1'"
@@ -19,26 +18,27 @@
                     {{tab.title}}
                 </el-tag>
             </template>
-            <!--</transition-grop>-->
         </div>
     </div>
 </template>
 
 <script>
-    import tabData from '../../../../assets/js/data/menu';
     import {mapGetters, mapActions} from 'vuex';
 
     export default {
-        name: "index",
+        name: "tab-view-index",
         data() {
             return {
-                tabData: tabData,
+                // tabData: tabData,
                 bodyLeft: 0,
                 littleScroll: 100
             };
         },
         computed: {
-            ...mapGetters('tab', [
+            tabData() {
+                return this.tabs || [];
+            },
+            ...mapGetters([
                 'current',
                 'tabs'
             ])
@@ -55,13 +55,11 @@
         },
         methods: {
             handleSelect(tab) {
-                console.log('tab', tab, this.$refs[`tab_${tab.name}`][0]);
                 if (this.current.name !== tab.name) {
                     this.updateCurrent(tab);
                 }
             },
             tabScroll(tabElement) {
-                console.log('tab', tabElement, tabElement.offsetLeft);
                 let tabWidth = this.$refs['tab'].offsetWidth;
                 if (tabElement.offsetLeft < (tabWidth - tabElement.offsetWidth)) {
                     this.bodyLeft = 0;
@@ -76,7 +74,6 @@
                 }
             },
             handleScroll(type) {
-                let offsetLeft = this.$refs[`tab_${this.tab.name}`].offsetLeft;
                 if (type === 'left') {
                     if (this.bodyLeft >= -this.littleScroll) {
                         this.bodyLeft = 0;
@@ -93,7 +90,7 @@
                     }
                 }
             },
-            ...mapActions('tab', [
+            ...mapActions([
                 'updateCurrent'
             ])
         }
@@ -127,6 +124,7 @@
                 }
             }
         }
+
         .tab-prev,
         .tab-next {
             position: absolute;
@@ -137,9 +135,11 @@
             width: 20px;
             cursor: pointer;
         }
+
         .tab-prev {
             left: 0;
         }
+
         .tab-next {
             right: 0;
         }

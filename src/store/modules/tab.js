@@ -30,11 +30,11 @@ const mutations = {
 
 const actions = {
     addTabs({commit}, payload) {
-        commit([type.ADD_TABS], payload);
-        commit([type.UPDATE_CURRENT], payload);
+        commit(type.ADD_TABS, payload);
+        commit(type.UPDATE_CURRENT, payload);
     },
     updateCurrent({commit}, payload) {
-        commit([type.UPDATE_CURRENT], payload);
+        commit(type.UPDATE_CURRENT, payload);
     }
 };
 

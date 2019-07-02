@@ -25,5 +25,9 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 功能
+ [] 图表
+ 
+ [] 地图
+ 
+ [] 图片查看

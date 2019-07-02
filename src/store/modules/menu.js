@@ -1,4 +1,4 @@
-import *as type from './type';
+import *as type from '../type';
 
 const state = {
     menus: []
@@ -6,13 +6,13 @@ const state = {
 
 const mutations = {
     [type.ADD_MENUS]: (state, payload) => {
-        state.menus.push(payload);
+        state.menus.push(...payload);
     }
 };
 
 const actions = {
     addMenus({commit}, payload) {
-        commit([type.ADD_MENUS], payload);
+        commit(type.ADD_MENUS, payload);
     }
 };
 

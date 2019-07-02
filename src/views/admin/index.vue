@@ -5,6 +5,8 @@
         <!--header-->
         <div class="content-right">
             <admin-header class="admin-header"></admin-header>
+             <!--content-->
+            <router-view></router-view>
             <!--content-->
             <!--        <admin-content class="admin-content"></admin-content>-->
         </div>

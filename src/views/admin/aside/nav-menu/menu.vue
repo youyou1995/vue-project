@@ -19,16 +19,19 @@
     import {mapGetters, mapActions} from 'vuex';
 
     export default {
-        name: "menu",
+        name: "nav-menu",
         data() {
             return {
                 menuArr: menuData,
                 isCollapse: false,
-                defaultActive: ''
+                // defaultActive: ''
             };
         },
         components: {MenuItem},
         computed: {
+            defaultActive() {
+                return this.current.name || '01';
+            },
             ...mapGetters([
                 'current',
                 'tabs'
@@ -43,7 +46,6 @@
                 });
             },
             handleSelect(name) {
-                console.log('menu', name, this.current, this.tabs);
                 let isOpen = false;
                 this.tabs.forEach(tab => {
                     // 判断是tab中是否存在
@@ -61,8 +63,8 @@
                 for (let menu of menuData) {
                     if (!menu.children || menu.children.length <= 0) {
                         if (!name) {
-                            this.defaultActive = menu.name;
                             this.addTabs(menu);
+                            break;
                         } else if (name && menu.name === name) {
                             this.addTabs(menu);
                             break;
@@ -83,7 +85,7 @@
             this.registerComponent();
             this.addMenus(this.menuArr);
             // 默认打开第一个
-            if (!this.current) {
+            if (!this.current || !this.current.name) {
                 this.dealMenu(this.menuArr[0]);
             }
         }
