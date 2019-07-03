@@ -1,6 +1,6 @@
 <template>
     <div class="icon">
-        字体图标页面
+        <h1>字体图标页面</h1>
     </div>
 </template>
 

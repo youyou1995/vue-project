@@ -8,6 +8,7 @@ export default [
         "name": "01",
         "path": "index/",
         "component": "index",
+        "router": 'index',
         "icon": "shouye",
         "closable": 0
     },
@@ -18,6 +19,7 @@ export default [
         "path": "chart/",
         "component": "index",
         "icon": "shouye",
+        "router": 'chart',
         "closable": 0,
         "children": []
     },
@@ -28,6 +30,7 @@ export default [
         "path": "icon/",
         "component": "index",
         "icon": "shouye",
+        "router": 'icon',
         "closable": 0,
         "children": []
     },
@@ -38,7 +41,8 @@ export default [
         "path": "map/",
         "component": "index",
         "icon": "shouye",
+        "router": 'map',
         "closable": 0,
         "children": []
     }
-]
+];

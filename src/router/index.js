@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import Admin from '../views/admin/index.vue';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -8,19 +10,38 @@ const router = new Router({
     // base: process.env.BASE_URL,
     routes: [
         {
-            path: '/admin',
+            path: '/',
+            redirect: '/index',
             name: 'admin',
-            component: () => import('../views/admin/index.vue')
+            component: Admin,
+            children: [
+                {
+                    path: '/index',
+                    component: () => import('../views/index/index.vue')
+                },
+                {
+                    path: '/chart',
+                    component: () => import('../views/chart/index.vue')
+                },
+                {
+                    path: '/icon',
+                    component: () => import('../views/icon/index.vue')
+                },
+                {
+                    path: '/map',
+                    component: () => import('../views/map/index.vue')
+                }
+            ]
         }
     ]
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.path !== '/admin') {
-        next('/admin');
-        return;
-    }
-    next();
-});
+// router.beforeEach((to, from, next) => {
+//     if (to.path !== '/admin') {
+//         next('/admin');
+//         return;
+//     }
+//     next();
+// });
 
 export default router;

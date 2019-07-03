@@ -38,10 +38,12 @@
             ])
         },
         methods: {
-            registerComponent() {
-                menuData && menuData.length > 0 && menuData.forEach(menu => {
+            registerComponent(menuData = []) {
+                menuData.length > 0 && menuData.forEach(menu => {
                     if (!menu.children || menu.children.length === 0) {
                         Vue.component(`y-${menu.name}`, () => import(`../../../${menu.path}${menu.component}.vue`));
+                    } else {
+                        this.registerComponent(menu.children);
                     }
                 });
             },
@@ -82,7 +84,7 @@
             )
         },
         mounted() {
-            this.registerComponent();
+            this.registerComponent(menuData);
             this.addMenus(this.menuArr);
             // 默认打开第一个
             if (!this.current || !this.current.name) {

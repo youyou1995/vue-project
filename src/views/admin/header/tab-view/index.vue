@@ -1,20 +1,31 @@
 <template>
     <div class="tab" ref="tab">
-        <div class="tab-prev" @click="handleScroll('left')">
+        <div class="tab-prev"
+             @click="handleScroll('left')"
+        >
             <i class="el-icon-arrow-left"></i>
         </div>
-        <div class="tab-next" @click="handleScroll('right')">
+        <div class="tab-next"
+             @click="handleScroll('right')"
+        >
             <i class="el-icon-arrow-right"></i>
         </div>
-        <div ref="wrapper" class="tab-wrapper" :style="{transform: `translateX(${bodyLeft})px`}">
+        <div ref="wrapper"
+             class="tab-wrapper"
+             :style="{transform: `translateX(${bodyLeft})px`}"
+        >
             <template v-if="tabData && tabData.length > 0"
             >
-                <el-tag :ref="`tab_${tab.name}`" :closable="tab.closable ==='1'"
+                <el-tag :ref="`tab_${tab.name}`"
+                        :closable="tab.closable ==='1'"
                         v-for="tab in tabData"
                         :key="tab.name"
                         @click="handleSelect(tab)"
                 >
-                    <i :class="['iconfont', tab.icon]"></i>
+                    <y-icon icon="y-yuandian"
+                            :color="current.name === tab.name ? '#e6a23c' : '#909399'"
+                    >
+                    </y-icon>
                     {{tab.title}}
                 </el-tag>
             </template>
@@ -44,9 +55,11 @@
             ])
         },
         watch: {
-            current(val) {
+            ['current.name'](name) {
+                // 进行页面跳转
+                this.$router.push({path: `/${this.current.router}`});
                 this.$nextTick(() => {
-                    let tabElement = this.$refs[`tab_${val}`];
+                    let tabElement = this.$refs[`tab_${name}`];
                     if (tabElement && tabElement.length > 0) {
                         this.tabScroll(tabElement);
                     }

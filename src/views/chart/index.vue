@@ -1,6 +1,6 @@
 <template>
     <div class="chart">
-        图标页面
+        <h1>图标页面</h1>
     </div>
 </template>
 

@@ -5,7 +5,7 @@
         <!--header-->
         <div class="content-right">
             <admin-header class="admin-header"></admin-header>
-             <!--content-->
+            <!--content-->
             <router-view></router-view>
             <!--content-->
             <!--        <admin-content class="admin-content"></admin-content>-->
@@ -33,7 +33,7 @@
             bottom: 0;
             left: 0;
             width: 210px !important;
-            height: 100%;
+            min-height: 100%;
             overflow: hidden;
         }
 
