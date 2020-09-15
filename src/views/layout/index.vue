@@ -39,6 +39,7 @@
             }
             .layout-content-content {
                 flex: 1;
+                background-color: $background-color;
             }
         }
     }

@@ -1,7 +1,9 @@
 <template>
-    <div class="home">
-        home
-    </div>
+    <content-bar>
+        <div class="home">
+            home
+        </div>
+    </content-bar>
 </template>
 
 <script>
