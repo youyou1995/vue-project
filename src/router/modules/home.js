@@ -8,13 +8,15 @@ export default {
     meta: {
         name: '首页'
     },
+    isShow: false, // 是否显示
     children: [
         {
             name: '首页',
             component: () => import('@/views/home/index.vue'),
             path: '/home',
             meta: {
-                name: '首页'
+                id: 'home',
+                name: '首页',
             }
         }
     ]

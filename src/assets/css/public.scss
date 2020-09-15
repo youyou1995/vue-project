@@ -1,1 +1,165 @@
+/*
+* 全局公共样式
+*/
+// color
+$brand-color: #2d8cf0;
+$brand-light: #F0FAFF;
+$brand-hover: #FAFDFF;
+$danger-color: #ff1f2c;
+$danger-light: #fff1f2;
+$danger-hover: #FFFAFA;
+$warning-color: #ff9900;
+$warning-light: #FFF9E6;
+$warning-hover: #FFFDF9;
+$success-color: #19be6b;
+$success-light: #EDFFF3;
+$success-hover: #FAFFFC;
+$text-first: #262B30;
+$text-second: #636669;
+$text-third: #939799;
+$text-zhushi: #b8b9bd;
 $border-color: #e9edef;
+$border-bg-color: #e0e0e0;
+$background-color: #F4F6F8;
+$disable-color: #cccccc;
+$menu-nav-bg-color: #24242e;
+$menu-nav-active-bg-color: #111216;
+$shade-color: rgba(0, 0, 0, 0.8); // 遮罩
+$shadow-card: 0px 1px 4px rgba(133, 148, 162, 0.2);
+$global-disable: #F0F4F6;
+$global-bg3:#FBFCFF;
+// 数据颜色
+$data-blue: #4A67FF;
+$data-green: #43DBA3;
+$data-orange: #F66000;
+$data-red: #F65290;
+$data-purple:#8F80FF;
+$data-yellow: #F4C900;
+$data-bg-liner: linear-gradient(180deg, #F7F8FF 0%, #FFFFFF 100%);
+$data-blue2: #39A7F1;
+$data-liner-blue: linear-gradient(180deg, #4A67FF 14.2%, rgba(74, 103, 255, 0.1) 100%);
+$data-liner-goods: linear-gradient(180deg, #FFFBF7 0%, #FFFFFF 100%);
+$data-liner-vip: linear-gradient(180deg, #F7FFF9 0%, #FFFFFF 100%);
+// 渠道颜色
+$channel-weixin:#1BB723;
+$channel-weixinxiaochengxu: #677DE0;
+$channel-browser: #1EBBEE;
+$channel-alipay: #2094E7;
+$channel-baidu: #306CFF;
+$channel-toutiao: #239BFF;
+$channel-douyin: #1F0A1C;
+$channel-weixinxiaochengxu2: #FAFAFF;
+//
+$channel-wxapp-bg: #FAFAFF; // 微信小程序背景色
+$channel-baidu-bg: #FAFBFF; // 百度小程序背景色
+$channel-toutiao-bg: #FAFDFF; // 头条 抖音 小程序背景色
+$channel-alipay-bg: #FAFCFF; // 支付宝 小程序背景色
+$channel-wechat-bg: #FAFFFC; // 公众号 小程序背景色
+
+$uni-color-primary:#ff3c29;
+$uni-text-color:#212121;
+$uni-text-color-grey:#969696;
+$uni-bg-color-grey:#f5f5f5;
+$uni-border-color:#E6E7EB;
+// font 命名规范 font-size-(line-height)-weight
+// 12
+@mixin font-12-16 {
+  font: {
+    size: 12px;
+  }
+  line-height: 16px;
+}
+@mixin font-12-16-bold {
+  font: {
+    size: 12px;
+    weight: bold;
+  }
+  line-height: 16px;
+}
+@mixin font-12-18 {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin font-12-24 {
+  font-size: 12px;
+  line-height: 24px;
+}
+// 14
+@mixin font-14-20 {
+  font: {
+    size: 14px;
+    weight: normal;
+  }
+  line-height: 20px;
+}
+@mixin font-14-20-bold {
+  font: {
+    size: 14px;
+    weight: bold;
+  }
+  line-height: 20px;
+}
+// 16
+@mixin font-16-22 {
+  font-size: 16px;
+  line-height: 22px;
+}
+@mixin font-16-22-bold {
+  font: {
+    size: 16px;
+    weight: bold;
+  }
+  line-height: 22px;
+}
+@mixin font-18-25-bold {
+  font: {
+    size: 18px;
+    weight: bold;
+  }
+  line-height: 25px;
+}
+// 大标题 24
+@mixin font-24-34-bold {
+  font: {
+    size: 24px;
+    weight: bold;
+  }
+  line-height: 34px;
+}
+@mixin font-32-39-500 {
+  font: {
+    size: 32px;
+    weight:500;
+  }
+  line-height:39px;
+}
+@mixin font-30-36-500 {
+  font: {
+    size: 30px;
+    weight: 500;
+  }
+  line-height: 36px;
+}
+// 文本单行省略
+@mixin font-single-omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+}
+// 多行文本省略
+@mixin font-multiple-omit($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line; /*控制哪一行超出显示....*/
+  -webkit-box-orient: vertical;
+}
+
+@function rpx($n) {
+  @return $n/2/307*375+px;
+}
+
+@function px2rpx($n) {
+  @return $n+px;
+}

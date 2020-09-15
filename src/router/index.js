@@ -14,5 +14,4 @@ const routes = [
 const router = new Router({
   routes
 })
-console.log('router', router)
 export default router
