@@ -1,11 +1,11 @@
-/**
- * 注册全局组件
- */
+// 组件全局注册
+
 import Vue from 'vue';
 
-let paths = require.context('./global', false, /\/.*\.vue$/);
-paths.keys().forEach(item => {
-    const componentConfig = paths(item);
+const requireComponent = require.context('./', true, /\.vue$/);
+
+requireComponent.keys().forEach(key => {
+    const componentConfig = requireComponent(key);
     const component = componentConfig.default || componentConfig;
     Vue.component(component.name, component);
 });

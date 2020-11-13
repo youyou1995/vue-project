@@ -1,27 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import tab from './modules/tab';
+import menu from './modules/menu';
 
-Vue.use(Vuex)
-let modules = {}, moduleName = [];
-let paths = require.context('./modules', false, /\/.*\.js$/);
-paths.keys().map(item => {
-  moduleName.push(item.replace(/(\.\/|\.js)/g, ''));
-  return paths(item).default;
-}).forEach((item, index) => {
-  modules[moduleName[index]] = item;
-})
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {
-    ...modules,
-  },
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
-})
+    modules: {
+        tab,
+        menu
+    },
+    strict: process.env.NODE_ENV !== 'production'
+});

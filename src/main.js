@@ -1,18 +1,18 @@
-import Vue from 'vue'
-import './plugins/axios'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import ViewUI from 'view-design'
-import "view-design/dist/styles/iview.css"
-import './router/menu';
+import Vue from 'vue';
+import './plugins/axios';
+import App from './App.vue';
+import router from './router/index';
+import './plugins/element.js';
+import store from './store/index';
+// 组件
+import './components/index';
+//css
+import './assets/css/iconfont/iconfont.css';
 
-Vue.config.productionTip = false
-
-Vue.use(ViewUI);
+Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+    router: router,
+    store,
+    render: h => h(App)
+}).$mount('#app');
