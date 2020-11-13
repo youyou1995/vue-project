@@ -110,7 +110,7 @@
     };
 </script>
 
-<style lang="less">
+<style lang="scss">
     .tab {
         position: relative;
         overflow: hidden;

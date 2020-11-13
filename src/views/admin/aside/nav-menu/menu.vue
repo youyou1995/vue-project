@@ -1,5 +1,5 @@
 <template>
-    <el-menu default-active="1-4-1"
+    <el-menu 
              :collapse="isCollapse"
              :default-active="defaultActive"
              @select="handleSelect"

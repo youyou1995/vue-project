@@ -41,7 +41,7 @@
     };
 </script>
 
-<style scoped lang="less">
+<style scoped lang="scss">
     .admin-header {
         .navbar {
             height: 50px;

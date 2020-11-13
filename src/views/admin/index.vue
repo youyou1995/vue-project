@@ -25,7 +25,7 @@
     };
 </script>
 
-<style lang="less">
+<style lang="scss">
     .admin {
         .admin-aside {
             position: fixed;
