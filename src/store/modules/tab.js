@@ -1,5 +1,3 @@
-import * as type from '../type';
-
 const state = {
     current: {},
     tabs: []
@@ -11,13 +9,13 @@ const getters = {
 };
 
 const mutations = {
-    [type.ADD_TABS]: (state, payload) => {
+    addTabs: (state, payload) => {
         state.tabs.push(payload);
     },
-    [type.UPDATE_CURRENT]: (state, payload) => {
+    updateCurrent: (state, payload) => {
         state.current = payload;
     },
-    [type.DEL_TABS]: (state, payload) => {
+    delTabs: (state, payload) => {
         let tabs = [];
         state.tabs.forEach(tab => {
             if (tab.name !== payload.name) {
@@ -30,16 +28,16 @@ const mutations = {
 
 const actions = {
     addTabs({commit}, payload) {
-        commit(type.ADD_TABS, payload);
-        commit(type.UPDATE_CURRENT, payload);
+        commit('addTabs', payload);
+        commit('updateCurrent', payload);
     },
     updateCurrent({commit}, payload) {
-        commit(type.UPDATE_CURRENT, payload);
+        commit('updateCurrent', payload);
     }
 };
 
 export default {
-    // namespaced: true, // 使用命名空间后再使用map时需要指出是哪一个store的模块的变量或者方法
+    namespaced: true, // 使用命名空间后再使用map时需要指出是哪一个store的模块的变量或者方法
     state,
     getters,
     mutations,

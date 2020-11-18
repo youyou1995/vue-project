@@ -1,22 +1,25 @@
-import *as type from '../type';
-
 const state = {
     menus: []
 };
 
 const mutations = {
-    [type.ADD_MENUS]: (state, payload) => {
+    addMenus(state, payload) {
         state.menus.push(...payload);
+    },
+    setMenus: (state, payload) => {
+        console.log('aylod', payload);
+        state.menus = payload;
     }
 };
 
 const actions = {
     addMenus({commit}, payload) {
-        commit(type.ADD_MENUS, payload);
+        commit('addMenus', payload);
     }
 };
 
 export default {
+    namespaced: true,
     state,
     mutations,
     actions

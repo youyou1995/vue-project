@@ -7,20 +7,20 @@
         </div>
         <Menu width="160px" :active-name="activeName" :open-names="openNames" v-if="menus">
             <template v-for="item in menus">
-                <Submenu :name="item.id" v-if="item.children && item.children.length > 0" :key="item.id">
+                <Submenu :name="item.key" v-if="item.children && item.children.length > 0" :key="item.key">
                     <template slot="title">
                         <Icon type="ios-paper"/>
                         {{item.name}}
                     </template>
                     <template v-for="child in item.children">
-                        <MenuItem :key="child.id" :name="child.id" :to="item.path">
+                        <MenuItem :key="child.id" :name="child.key" :to="item.path">
                             <Icon type="ios-paper"/>
                             {{item.name}}
                         </MenuItem>
                     </template>
 
                 </Submenu>
-                <MenuItem v-else  :key="item.id" :name="item.id" :to="item.path">
+                <MenuItem v-else  :key="item.key" :name="item.key" :to="item.path">
                     <Icon type="ios-paper"/>
                     {{item.name}}
                 </MenuItem>
@@ -42,7 +42,7 @@
             };
         },
         computed: {
-            ...mapState('menus', {
+            ...mapState('menu', {
                 menus: state => state.menus
             })
         },
@@ -51,8 +51,8 @@
         },
         methods: {
             initMenus() {
-                this.activeName = this.menus?.[0]?.id;
-                this.openNames = this.menus?.[0]?.id? [this.menus?.[0]?.id] : [];
+                this.activeName = 0;
+                // this.openNames = this.menus?.[0]?.id? [this.menus?.[0]?.id] : [];
             }
         }
     };

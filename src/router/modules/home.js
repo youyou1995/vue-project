@@ -8,7 +8,7 @@ export default {
     meta: {
         name: '首页'
     },
-    isShow: false, // 是否显示
+    show: false, // 是否显示
     children: [
         {
             name: '首页',
