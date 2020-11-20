@@ -9,6 +9,9 @@ class FileRequest {
     }
     request() {
         let instance = axios.create();
-        Object.assign(instance, )
+        // Object.assign(instance, )
+        return instance;
     }
 }
+
+export default FileRequest;
