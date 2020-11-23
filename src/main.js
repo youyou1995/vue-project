@@ -7,13 +7,14 @@ import './menus/index';
 import ViewUI from 'view-design';
 // 组件
 import './components/index';
+import api from '@/api/index'
 //css
 import 'view-design/dist/styles/iview.css';
 import './assets/css/iconfont/iconfont.css';
 import './assets/css/reset.scss'
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$api = api;
 Vue.use(ViewUI, {
     transfer: true
 });

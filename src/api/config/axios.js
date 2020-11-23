@@ -3,7 +3,6 @@ class HttpRequest {
     constructor(baseUrl, headers = {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',}) {
         this.baseUrl = baseUrl;
         this.headers = headers;
-        this.options = {message: true}
     }
     getInsideConfig() {
         const config = {
@@ -11,8 +10,9 @@ class HttpRequest {
             headers: this.headers,
             
         }
+        return config;
     }
-    interceptors(instance, options) {
+    interceptors(instance) {
         instance.interceptors.request.use(config => {
             return config;
         }, error => {

@@ -51,8 +51,8 @@
         },
         methods: {
             initMenus() {
-                this.activeName = 0;
-                // this.openNames = this.menus?.[0]?.id? [this.menus?.[0]?.id] : [];
+                this.activeName = this.menus?.[0]?.key;
+                this.openNames = this.menus?.[0]?.key? [this.menus?.[0]?.key] : [];
             }
         }
     };
